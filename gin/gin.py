@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 
 
-"""bootstrap.bootstrap: provides entry point main()."""
+"""gin.gin: provides entry point main()."""
 
 
-__version__ = "0.0.1"
+__version__ = "0.0.3"
 
 
 import sys
 
-from .stuff import Stuff
+from .parser import Parser
 
 
 def main():
-    print("Executing GIN version %s." % __version__)
-    print("List of argument strings: %s" % sys.argv[1:])
-    print("Stuff and Boo():\n%s\n%s" % (Stuff, Boo()))
+	
+    parser = Parser()
+    
+    gin_src = sys.argv[1]
+    
+    ini_dst = sys.argv[1].replace(".gin", ".ini")
 
+    parser.parse(gin_src, ini_dst)
 
-class Boo(Stuff):
-    pass
