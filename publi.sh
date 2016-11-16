@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #
-rm -fr dist
+sudo rm -fr dist
 
 #
-python setup.py sdist
+sudo python setup.py sdist
 
 #
 twine upload dist/*

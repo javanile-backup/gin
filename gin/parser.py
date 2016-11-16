@@ -11,16 +11,18 @@ class Parser(object):
     
     ##
     def parse(__self__, gin_src, ini_dst):
+    
+        ##
+        with open(gin_src, 'r') as cin, open(ini_dst, "w") as cout:
+		
+            ##
+            content = cin.read()
 
-	## read gin source content 
-        content = open(gin_src, 'r').read()
+        	## replace environment variables
+            for name in os.environ:
+		        content = content.replace('{{$'+name+'}}', os.environ[name].replace('\\','/'))
 
-        ## replace environment variables
-        for name in os.environ:
-            print (name+": "+os.environ[name]) 
-            content = content.replace('{{$'+name+'}}', os.environ[name].replace('\\','/'))
-
-	## write new ini file
-        open(ini_dst, "w").write(content)	
+		    ## write new ini file
+            cout.write(content)
 
 	
